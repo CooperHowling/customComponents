@@ -1,0 +1,7 @@
+<sly data-sly-test="${wcmmode.edit && (!properties.linkURL && !properties.jcr:title && !properties.restaurantID)}">
+    <p data-emptytext="Button"
+       class="cq-placeholder"></p>
+</sly>
+<p data-sly-test="${!properties.restaurantID}"><a class="restaurant-button" href="${properties.linkURL}">${properties.jcr:title}</a></p>
+
+<script data-sly-test="${properties.restaurantID}" type='text/javascript' src="//www.opentable.com/widget/reservation/loader?rid=${properties.restaurantID}&type=standard&theme=standard&iframe=true&overlay=false&domain=com&lang=en-US"></script>

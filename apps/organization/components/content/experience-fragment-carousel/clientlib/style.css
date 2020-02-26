@@ -1,0 +1,42 @@
+.carousel {
+    position: relative;
+}
+
+.carousel .background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    overflow: hidden;
+}
+
+.carousel .background .background-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.carousel .background .background-video {
+    position: relative;
+    width: 100%;
+    top: -50%;
+}
+
+.carousel .slick-dots {
+    bottom: 1rem;
+}
+
+.carousel .slick-dotted.slick-slider {
+    margin: 0;
+}
+
+.carousel .content .error {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+#left-menu + #main-content-container .carousel{
+    width:calc(100vw - 210px);
+}

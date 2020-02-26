@@ -1,0 +1,59 @@
+<link rel="stylesheet" type="text/css" href="/content/dam/ORGANIZATION/global/css/slick.css"/>
+
+
+<div class="carousel">
+<meta data-sly-use.clientlib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-unwrap/>
+
+<sly data-sly-use.carousel="carousel.js" data-sly-unwrap>
+
+<!-- placeholder -->
+<div data-sly-test="${!carousel.paths}"
+     class="tb-aem-placeholder">
+    <strong>Carousel</strong><br>
+    This component lets you display rotating experience fragments. Open the edit dialog and select experience fragments that will be displayed as slides.
+</div>
+
+<!-- background image or video -->
+<div data-sly-test="${carousel.backgroundImage || carousel.backgroundVideo}"
+     class="background">
+
+    <div data-sly-test="${carousel.backgroundImage}"
+         class="background-image"
+         style="background-image: url(${carousel.backgroundImage @ context='styleString'})"></div>
+
+    <video data-sly-test="${carousel.backgroundVideo}"
+           autoplay loop preload="auto"
+           class="background-video">
+        <!-- TODO: display correct renditions -->
+        <source src="${carousel.backgroundVideo}" type='video/mp4'/>
+        <source src="${carousel.backgroundVideo}" type='video/webm'/>
+        <source src="${carousel.backgroundVideo}" type='video/ogg'/>
+    </video>
+
+</div>
+
+<!-- slides -->
+<div class="content"
+     data-sly-list="${carousel.paths}"
+     data-speed="${properties.speed}" 
+     data-direction="${properties.direction}"
+     data-autoplay="${properties.autoPlay}"
+     data-dots="${properties.dots}"
+     data-arrows="${properties.arrows}"
+     data-fade="${properties.fade}">
+
+    <div data-sly-test="${item == 'invalid'}" class="error">
+        Invalid path: <strong>${properties.paths[itemList.index]}</strong>.<br>Please select an Experience Fragment or its variation.
+    </div>
+
+    <div data-sly-test="${item == 'noVariations'}" class="error">
+        Invalid path: <strong>${properties.paths[itemList.index]}</strong>.<br>Please select an Experience Fragment with a 'web' variation.
+    </div>
+
+    <sly data-sly-test="${item != 'invalid' && item != 'noVariations'}">
+        <div data-sly-resource="${item @ wcmmode='disabled'}"></div>
+    </sly>
+
+</div>
+</sly>
+</div>
